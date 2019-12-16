@@ -15,6 +15,7 @@ class Counter extends React.Component {
     const num = this.state.num;
     return (
       <div>
+        HEllo word
         <a>Counter: {num} </a>
         <button onClick={this.handleClick}>
           +1
