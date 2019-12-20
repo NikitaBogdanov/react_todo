@@ -17,6 +17,9 @@ export default function counterApp(state = initialState, action) {
         case RESET:
             return  { ...state, counterNum: 0};
         default:
+        {
+            console.log(state)
             return state
+        }
     }
 }
