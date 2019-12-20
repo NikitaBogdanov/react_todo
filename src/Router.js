@@ -1,28 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import rootReducer from './reducers';
-
-import { connect } from 'react-redux';
-import { increment, decrement, reset } from './actionCreators';
-
-const mapStateToProps = (state /*, ownProps*/) => {
-    return {
-        counter: state.counter
-    }
-};
-
-const mapDispatchToProps = { increment, decrement, reset }
-
 import Counter from "./components/Counter.js";
+import combineReducers from './reducers';
 
-const store = createStore(rootReducer);
-
+const store = createStore(combineReducers,
+    +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class MyRouter extends React.Component {
-
     render() {
         return (
             <Provider store={store}>
@@ -36,8 +23,4 @@ class MyRouter extends React.Component {
 }
 
 export default MyRouter;
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Counter)
 

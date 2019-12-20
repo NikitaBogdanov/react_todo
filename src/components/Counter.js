@@ -1,23 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { increaseNum, decreaseNum, resetNum } from '../reducers/counter/actions';
+
+const mapStateToProps = (state /*, ownProps*/) => {
+    return {
+        counterNum: state.counterNum
+    }
+};
+
+const mapDispatchToProps = { increaseNum, decreaseNum, resetNum };
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {num: 0};
-  }
-
-  handleClick() {
-    this.setState({num: this.state.num+1});
-  }
-
   render() {
-    const num = this.state.num;
     return (
       <div>
-        HEllo word
-        <a>Counter: {num} </a>
-        <button onClick={this.handleClick}>
+        <a>Counter: {this.props.counterNum} </a>
+        <button onClick={dispatch(increaseNum)}>
           +1
         </button>
       </div>
@@ -25,4 +23,7 @@ class Counter extends React.Component {
   }
 }
 
-export default Counter;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Counter)
