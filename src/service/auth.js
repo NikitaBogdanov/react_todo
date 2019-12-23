@@ -1,36 +1,10 @@
+import ApiService from './Api'
+
 export default {
-    login: (data) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        };
-
-        return fetch('http://localhost:2500/users/login', requestOptions)
-            .then(handleResponse)
-            .then(sessionId => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('sessionId', JSON.stringify(sessionId));
-
-                return sessionId;
-            });
+    login(params) {
+        return ApiService.post('/users/login', params);
+    },
+    registration(params) {
+        return ApiService.post('/users/registration', params);
     }
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                // logout();
-                // location.reload(true);
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
 }

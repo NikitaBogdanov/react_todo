@@ -4,11 +4,11 @@ import cx from 'classnames';
 import './style.css'
 
 const blue = 'blue';
-const red = 'red';
+const light = 'light';
 
 export const ButtonColors = {
     blue,
-    red
+    light
 };
 
 class CustomButton extends React.Component {

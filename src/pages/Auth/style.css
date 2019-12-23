@@ -1,11 +1,23 @@
+.frame {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
 .auth {
-    width: 10%;
-    border-radius: 15px;
-    padding: 15px;
+    width: 250px;
+    border-radius: 30px;
+    padding: 5px 20px 30px 20px;
     box-shadow: 0 2px 13px 4px #00000525;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.db {
+
+}
+.dn {
+    display: none;
 }

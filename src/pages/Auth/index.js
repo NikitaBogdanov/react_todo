@@ -1,21 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Login from '../../components/Login'
+import Registration from '../../components/Registration'
 import './style.css'
 
 class AuthLogin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
+
 
     render() {
         return (
-            <div>
+            <div className="frame">
                 <div className="auth">
-                    <Login/>
+                    <div>
+                        <Login />
+                    </div>
+                    <div className={this.props.form === "registration" ? "db" : "dn"}>
+                        <Registration />
+                    </div>
                 </div>
             </div>
         );
