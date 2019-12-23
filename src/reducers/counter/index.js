@@ -18,7 +18,6 @@ export default function counterApp(state = initialState, action) {
             return  { ...state, counterNum: 0};
         default:
         {
-            console.log(state)
             return state
         }
     }

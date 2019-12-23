@@ -1,20 +1,23 @@
 import React from 'react';
+import api from "./service";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import LoginPage from "./pages/Login";
-import Counter from "./components/Counter.js";
+import { createStore, applyMiddleware, compose } from 'redux';
+import AuthPage from "./pages/Auth";
+import thunk from 'redux-thunk';
+import Counter from "./components/Counter";
 import combineReducers from './reducers';
 
-export const store = createStore(combineReducers, +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(combineReducers,  composeEnhancers(applyMiddleware(thunk.withExtraArgument(api))));
 
 class MyRouter extends React.Component {
     render() {
         return (
             <Provider store={store}>
             <Router>
-                <Route path="/" component={LoginPage}/>
-                <Route path="/counter" component={Counter}/>
+                <Route path="/" component={AuthPage} exact/>
+                <Route path="/counter" component={Counter} exact/>
             </Router>
             </Provider>
         );

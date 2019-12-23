@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {increaseNum, decreaseNum, resetNum} from '../reducers/counter/actions';
+import {increaseNum, decreaseNum, resetNum} from '../../reducers/counter/actions';
 
-class Counter extends React.Component {
+class Index extends React.Component {
     handleClick = () => {
         this.props.hanldeIncreaseNum();
     };
@@ -23,4 +23,4 @@ const mapDispatchToProps = (dispatch) => ({
     hanldeIncreaseNum: () => dispatch(increaseNum())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

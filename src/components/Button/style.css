@@ -1,0 +1,29 @@
+.custom-button {
+  width: 100%;
+  padding:0.3em 1.2em;
+  border-radius:2em;
+  border-width: 0;
+  border-style: solid;
+  color:#FFFFFF;
+}
+
+.blue {
+  background-color: rgba(38, 106, 201, 1);
+}
+.red {
+  background-color: rgba(200, 20, 20, 1);
+}
+
+.custom-button:disabled {
+  background-color: rgba(140, 140, 140, 1);
+}
+/*.custom-button:active {*/
+/*  background-color: rgba(20, 20, 20, 0.8);*/
+/*}*/
+.custom-button.blue:not(active):hover:enabled {
+  background-color: rgba(68, 196, 255, 1);
+}
+
+.custom-button:focus{
+  outline: none;
+}

@@ -27,7 +27,7 @@ export default function LoginApp(state = initialState, action) {
         case LOGIN_SUCCESS:
             return  { ...state, login: { isLoading : false, payload: action.payload }};
         case LOGIN_FAILURE:
-            return  { ...state, login: { isLoading : false , error: action.payload}};
+            return  { ...state, login: { isLoading : false , error: action.error }};
         case REGISTRATION:
             return  { ...state, registration: { isLoading : true }};
         case REGISTRATION_SUCCESS:

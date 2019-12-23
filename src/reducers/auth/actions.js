@@ -7,12 +7,18 @@ import {
     REGISTRATION_FAILURE,
 } from './constants';
 
-export function Login(data) {
-    // dispatch({ type: LOGIN})
-    // apiServ.login(data).then((payload) => return dispatch({ type: LOGIN_SUCCESS, payload})
+import service from '../../service/index';
+
+export const login = (data) => {
+    return (dispatch) => {
+        dispatch({ type: LOGIN });
+        service.AuthService.login(data).then(payload =>
+            dispatch({ type: LOGIN_SUCCESS, payload }))
+        .catch(error =>
+            dispatch({ type: LOGIN_FAILURE, error }));
+        }
 }
 
-export function Registration(data) {
-    return { type: REGISTRATION }
-}
-
+// export function Registration(data) {
+//     return { type: REGISTRATION }
+// }
