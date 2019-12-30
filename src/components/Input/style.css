@@ -30,7 +30,11 @@
   color: rgba(20, 20, 20, 0.1);
 }
 
-.custom-input-field:hover {
+.custom-input-field:disabled {
+  border-color: rgb(162, 162, 162);
+}
+
+.custom-input-field:hover:not(:disabled) {
   border-bottom-width: 2px;
   margin-bottom: 0;
 }

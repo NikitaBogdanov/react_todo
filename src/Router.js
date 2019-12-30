@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import AuthPage from "./pages/Auth";
+import TodoList from "./pages/List";
 import thunk from 'redux-thunk';
 import Counter from "./components/Counter";
 import combineReducers from './reducers';
@@ -17,6 +18,7 @@ class MyRouter extends React.Component {
             <Provider store={store}>
             <Router>
                 <Route path="/" component={AuthPage} exact/>
+                <Route path="/list" component={TodoList} exact/>
                 <Route path="/counter" component={Counter} exact/>
             </Router>
             </Provider>

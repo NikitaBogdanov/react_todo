@@ -8,12 +8,12 @@ class CustomInput extends React.Component {
     }
 
     render() {
-        const {title, value, placeholder, handleChange} = this.props;
+        const {title, value, placeholder, handleChange, disabled} = this.props;
 
         return (
             <div className="custom-input-container">
                 <p className="custom-input-title" >{title}</p>
-                <input className="custom-input-field" value={value} onChange={handleChange} placeholder={placeholder}/>
+                <input className="custom-input-field" value={value} onChange={handleChange} placeholder={placeholder} disabled={disabled}/>
             </div>
         )
     }
