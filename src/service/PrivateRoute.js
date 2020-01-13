@@ -1,49 +1,21 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
+import AuthPage from "../pages/Auth";
 
-class PrivateRoute {
-    // constructor(props) {
-    //
-    // }
-    //
-    // render() {
-    //     return (
-    //         <Route
-    //         {...rest}
-    //         render = {props =>
-    //             localStorage.getItem("sessionId") ? (
-    //                 <Component {...props} />
-    //             ) : (
-    //                 <Redirect
-    //                     to={{
-    //                         pathname: "/login",
-    //                         state: {from: props.location}
-    //                     }}
-    //                 />
-    //             )
-    //         }
-    //         />
-    //     )
-    // }
+class PrivateRoute extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Route path = {this.props.path} component = {!localStorage.getItem("sessionId") ? this.props.component : AuthPage}/>
+            // <Route path={this.props.path} render={props => <Redirect to={"/"}/>}/>
+        )
+    }
 }
 
-// export const PrivateRoute = ({ component: Comment, ...rest }) => (
-//     <Route
-//         {...rest}
-//         render = {props =>
-//             localStorage.getItem("sessionId") ? (
-//                 <Component {...props} />
-//             ) : (
-//                 <Redirect
-//                     to = {{
-//                         pathname: "/login",
-//                         state: {from: props.location}
-//                     }}
-//                 />
-//             )
-//         }
-//     />
-// );
+export default PrivateRoute;
 
 //auth error from back, delete token
 

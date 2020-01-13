@@ -3,7 +3,10 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(217, 224, 244);
-    height: 100vh;
+    min-height: 100vh;
+    background-image: url("../../images/bg.jpg");
+    background-position: center;
+    background-size: cover;
 }
 .auth-content {
     width: 250px;
@@ -33,15 +36,8 @@
     margin-bottom: 15px;
     flex-direction: column;
 }
-.buttons {
-    width: 100%;
+
+.auth-btn-container {
     display: flex;
-    margin-top: 10px;
-    flex-direction: row;
-    align-content: space-around;
-}
-.notice {
-    text-align: center;
-    font-size: 10px;
-    color: rgba(76, 0, 4, 0.6);
+    justify-content: space-between;
 }

@@ -15,6 +15,14 @@
   margin-bottom: 5px;
 }
 
+.custom-input-notice {
+  text-align: center;
+  font-size: 10px;
+  color: rgba(76, 0, 4, 0.6);
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
 .custom-input-field:focus{
   outline: none;
   border-color: rgba(38, 106, 201, 1);

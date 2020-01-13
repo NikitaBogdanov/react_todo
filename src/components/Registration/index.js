@@ -13,42 +13,42 @@ class AuthRegistration extends React.Component {
             pw: "",
             pwConfirm: "",
             isLoading: false,
-            EmailValidation: {
+            validation: {
                 isEmailIncorrect: false,
-            },
-            PwValidation: {
                 isPwIncorrect: false,
                 isPwTooShort: false,
-                isPwMatched: true,
+                isPwMismatched: false,
                 isPwEmpty: true
             },
         };
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        this.handleChangePw = this.handleChangePw.bind(this);
-        this.handleChangeConfirm = this.handleChangeConfirm.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleClickRegistration = this.handleClickRegistration.bind(this);
     }
 
-    handleChangeEmail(event) {
-        this.setState({email: event.target.value}, this.emailCheck)
+    handleChange(value, field) {
+        this.setState({[field]: value}, this.validationCheck) // .THEN ...
     }
-    handleChangePw(event) {
-        this.setState({pw: event.target.value}, this.pwCheck);
-    }
-    handleChangeConfirm(event) {
-        this.setState({pwConfirm: event.target.value}, this.pwCheck);
-    }
+    //
+    // handleChangeEmail(event) {
+    //     this.setState({email: event.target.value}, this.emailCheck)
+    // }
+    // handleChangePw(event) {
+    //     this.setState({pw: event.target.value}, this.pwCheck);
+    // }
+    // handleChangeConfirm(event) {
+    //     this.setState({pwConfirm: event.target.value}, this.pwCheck);
+    // }
     handleClickRegistration() {
+        //validation first
         this.props.registration({email: this.state.email, pw: this.state.pw})
     }
-    emailCheck() {
-        this.setState({EmailValidation: {isEmailIncorrect: !this.state.email.match(/.+@.+\..+/)}});
-    }
-    pwCheck() {
-        this.setState({PwValidation: {
+
+    validationCheck() {
+        this.setState({validation: {
+                isEmailIncorrect: !this.state.email.match(/.+@.+\..+/),
                 isPwIncorrect: (this.state.pw.match(/[^\d\w]/)),
                 isPwTooShort: (this.state.pw.length<5),
-                isPwMatched: (this.state.pw === this.state.pwConfirm),
+                isPwMismatched: (this.state.pw !== this.state.pwConfirm),
                 isPwEmpty: (this.state.pw === "")
         }});
     }
@@ -58,23 +58,51 @@ class AuthRegistration extends React.Component {
             <div>
                 <div className="title">
                     <span>Registration</span>
-                    <span className="notice">{ this.props.error ? "Something wrong" :
-                        this.props.payload ? "Registration completed!" : "ᅠ"}</span>
+                    {/*<span className="notice">{ this.props.error ? "Something wrong" :*/}
+                    {/*    this.props.payload ? "Registration completed!" : "ᅠ"}</span>*/}
                 </div>
                 <div className="inputs">
-                    <CustomInput value={this.state.email} title="Enter email:" handleChange={this.handleChangeEmail} placeholder="sobaka@gmail.com" />
-                    <span className="notice">{ this.state.EmailValidation.isEmailIncorrect ? "Email is incorrect" : "ᅠ"}</span>
-                    <CustomInput value={this.state.pw} title="Enter password:" handleChange={this.handleChangePw} placeholder="***" />
-                    <CustomInput value={this.state.pwConfirm} title="Confirm password:" handleChange={this.handleChangeConfirm} placeholder="***" disabled={this.state.PwValidation.isPwEmpty}/>
-                    <span className="notice">{ this.state.PwValidation.isPwIncorrect ? "Password is incorrect" :
-                        !this.state.PwValidation.isPwMatched ? "Passwords dont match" : "ᅠ"}</span>
+                    <CustomInput
+                        value={this.state.email}
+                        title="Enter email:"
+                        notice = {this.state.validation.isEmailIncorrect && "Email is incorrect"}
+                        includeNotice = {true}
+                        handleChange={(e) => this.handleChange(e.target.value, 'email')}
+                        placeholder="sobaka@gmail.com"
+                    />
+                    {/*<span className="notice">{ this.state.EmailValidation.isEmailIncorrect ? "Email is incorrect" : "ᅠ"}</span>*/}
+                    <CustomInput
+                        value={this.state.pw}
+                        title="Enter password:"
+                        handleChange={(e) => this.handleChange(e.target.value, 'pw')}
+                        placeholder="***"
+                    />
+                    <CustomInput
+                        value={this.state.pwConfirm}
+                        title="Confirm password:"
+                        handleChange={(e) => this.handleChange(e.target.value, 'pwConfirm')}
+                        placeholder="***"
+                        disabled={this.state.validation.isPwEmpty}
+                    />
+                    {/*<span className="notice">{ this.state.validation.isPwIncorrect ? "Password is incorrect" :*/}
+                    {/*    this.state.PwValidation.isPwMismatched ? "Passwords dont match" : "ᅠ"}</span>*/}
                 </div>
-                <div className="buttons">
-                    <CustomButton title="Switch to login" type={ButtonColors.light} handleClick={this.props.onSwitch}
-                                  disabled={this.props.isLoading || this.props.payload}/>
-                    <CustomButton title="Registration" type={ButtonColors.blue} handleClick={this.handleClickRegistration}
-                                  disabled={this.props.isLoading || this.props.payload || this.state.PwValidation.isPwEmpty ||
-                                  this.state.PwValidation.isPwIncorrect || !this.state.PwValidation.isPwMatched}/>
+                <div className="auth-btn-container">
+                    <CustomButton
+                        className={'registration-btn-big'}
+                        title="Switch to login"
+                        type={ButtonColors.light}
+                        handleClick={this.props.onSwitch}
+                        disabled={this.props.isLoading || this.props.payload}
+                    />
+                    <CustomButton
+                        className={'registration-btn'}
+                        title="Registration"
+                        type={ButtonColors.blue}
+                        handleClick={this.handleClickRegistration}
+                        disabled={this.props.isLoading || this.props.payload || this.state.validation.isPwEmpty ||
+                                  this.state.validation.isPwIncorrect || this.state.validation.isPwMismatched}
+                    />
                 </div>
             </div>
         );

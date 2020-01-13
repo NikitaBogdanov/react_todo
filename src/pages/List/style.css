@@ -4,13 +4,17 @@
     align-items: center;
     background-color: rgb(217, 224, 244);
     height: 100vh;
+
+    background-image: url("../../images/bg.gif");
+    background-position: center;
+    background-size: cover;
 }
 .todo-content {
     width: 500px;
     border-radius: 30px;
     padding: 5px 0 10px 0;
     box-shadow: 0 2px 13px 4px #00000525;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     justify-content: space-between;

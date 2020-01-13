@@ -1,0 +1,19 @@
+.default-checkbox {
+    display: none;
+}
+.custom-checkbox {
+    cursor: pointer;
+}
+.new-checkbox {
+    width: 23px;
+    height: 23px;
+}
+.default-checkbox:checked + .new-checkbox {
+    background-image: url("../../images/checkbox2.png");
+}
+.default-checkbox:disabled + .new-checkbox {
+    background-image: url("../../images/checkbox3.png");
+}
+.new-checkbox {
+    background-image: url("../../images/checkbox1.png");
+}

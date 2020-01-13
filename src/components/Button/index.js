@@ -17,12 +17,15 @@ class CustomButton extends React.Component {
     }
 
     render() {
-        const {title, handleClick, type, disabled} = this.props;
+        const {title, handleClick, type, disabled, className} = this.props;
 
         return (
-            <div>
-                <button className={cx("custom-button" , type)} onClick={handleClick} disabled={disabled}>{title}</button>
-            </div>
+                <button
+                    className={cx("custom-button", type, className)}
+                    onClick={handleClick}
+                    disabled={disabled}>
+                    {title}
+                </button>
         )
     }
 }

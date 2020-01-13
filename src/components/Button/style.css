@@ -5,6 +5,7 @@
   border-width: 1px;
   border-style: solid;
   color:#FFFFFF;
+  -webkit-user-select: none;
 }
 
 .blue {

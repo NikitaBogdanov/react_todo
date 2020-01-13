@@ -1,0 +1,1 @@
+//check all object's fields false

@@ -10,28 +10,27 @@ class AuthLogin extends React.Component {
         this.state = {
             isLogin: true,
         };
-        this.handleSwitchForm = this.handleSwitchForm.bind(this);
+        this.handleSwitchLogin = this.handleSwitchLogin.bind(this);
     }
 
-    handleSwitchForm (value) {
+    handleSwitchLogin(value) {
         this.setState({isLogin: value})
     }
 
     render() {
-        const {onSwitch} = this.props;
         const {isLogin} = this.state;
+
         return (
             <div className="auth-container">
                 <div className="auth-content">
-                    {
-                        isLogin ?
-                            <Login onSwitch={() => this.handleSwitchForm(false)}/>
-                        :
-                            <Registration onSwitch={() => this.handleSwitchForm(true)}/>
+                    {isLogin ?
+                        <Login onSwitch={() => this.handleSwitchLogin(false)}/> :
+                        <Registration onSwitch={() => this.handleSwitchLogin(true)}/>
                     }
                 </div>
             </div>
         );
     }
 }
- export default AuthLogin
+
+export default AuthLogin
