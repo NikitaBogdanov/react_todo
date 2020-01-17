@@ -1,50 +1,39 @@
-.todo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.todo-bg {
+    min-height: 100vh;
     background-color: rgb(217, 224, 244);
-    height: 100vh;
-
     background-image: url("../../images/bg.gif");
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+}
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 }
 .todo-content {
     width: 500px;
+    min-height: 76vh;
     border-radius: 30px;
     padding: 5px 0 10px 0;
     box-shadow: 0 2px 13px 4px #00000525;
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+.todo-top {
+    width: 450px;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     justify-content: space-between;
-    align-items: center;
 }
-.todo-panel {
-    width: 100%;
-    margin: 15px 0 5px 0;
-    padding: 5px 0 10px 0;
-    box-shadow: 0 1px 10px 2px #00000525;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-.left-panel-buttons {
-    width: 100%;
-    padding-left: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-.right-panel-buttons {
-    width: 100%;
-    padding-right: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.todo-top > .custom-button {
+    width: 50px;
 }
 .todo-list {
     width: 90%;

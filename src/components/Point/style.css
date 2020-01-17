@@ -7,31 +7,51 @@
 .point-content {
   width: 100%;
   border-radius: 15px;
-  padding: 5px;
+  padding: 20px 5px 20px 5px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 2px 6px 2px #00000525;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 .point-check-box {
   padding-left: 20px;
   size: auto;
 }
+.delete-point-btn {
+   width: 60px;
+   margin-left: 2px;
+   margin-right: 15px;
+}
+.save-point-btn {
+  width: 60px;
+  margin-left: 2px;
+  margin-right: 15px;
+}
 .point-text {
-  width: 100%;
+  width: 300px;
   font-size: 16px;
-  display: flex;
   padding-left: 20px;
-  align-items: start;
+  word-wrap: break-word;
   -webkit-user-select: none;
 }
+.point-completed {
+  /*text-decoration: line-through;*/
+  color: rgba(94, 113, 132, 0.85);
+}
+.point-completed > .point-content {
+  /*background-color: rgb(255, 189, 253);*/
+  background-color: rgba(115, 166, 197, 0.4);
+}
+
+
+
 .point-content:hover{
-  border: solid 1px rgba(68, 196, 255, 1);
-  padding: 4px;
+  /*border: solid 1px rgba(68, 196, 255, 1);*/
+  /*padding: 19px 4px 19px 4px;*/
 }
 .point-content:active{
-  border: solid 2px rgba(38, 106, 201, 0.8);
-  padding: 3px;
+  /*border: solid 2px rgba(38, 106, 201, 0.8);*/
+  /*padding: 18px 3px 18px 3px;*/
 }

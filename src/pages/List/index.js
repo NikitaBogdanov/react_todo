@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Point from '../../components/Point'
 import CustomInput from '../../components/Input'
 import CustomButton, {ButtonColors} from '../../components/Button'
+import ListPanel from '../../components/ListPanel'
 import './style.css'
 import {Redirect} from "react-router-dom";
 
@@ -29,29 +30,45 @@ class TodoList extends React.Component {
     }
 
     render() {
+
         return (
-            <div className="todo-container">
-                <div className="todo-content">
-                    <div className="title">
-                        <span>My todo-list</span>
-                    </div>
-                    <div className="todo-panel">
-                        <div className="left-panel-buttons">
+            <div className="todo-bg">
+                <div className="todo-container">
+                    <div className="todo-content">
+                        <div className="todo-top">
                             <CustomButton title="<" type={ButtonColors.light} handleClick={this.handleClickReturn}/>
                             {this.state.isReturning && <Redirect to={"/"}/>}
                             {/*<CustomButton title="rename" type={ButtonColors.light} />*/}
+
+                            <div className="title">
+                                <span>My todo-list</span>
+                            </div>
+
                             <CustomButton title="+" type={ButtonColors.light} />
                         </div>
-                        <div className="right-panel-buttons">
-                            <CustomButton title="All" type={this.state.filter==="all" ? ButtonColors.blue : ButtonColors.light} handleClick={() => this.handleClickFilter("all")}/>
-                            <CustomButton title="Open" type={this.state.filter==="open" ? ButtonColors.blue : ButtonColors.light} handleClick={() => this.handleClickFilter("open")} />
-                            <CustomButton title="Completed" type={this.state.filter==="completed" ? ButtonColors.blue : ButtonColors.light} handleClick={() => this.handleClickFilter("completed")} />
+                        <ListPanel
+                            filter = {this.state.filter}
+                            handleClickReturn = {this.handleClickReturn}
+                            handleClickFilterAll = {() => this.handleClickFilter("all")}
+                            handleClickFilterOpen = {() => this.handleClickFilter("open")}
+                            handleClickFilterCompleted = {() => this.handleClickFilter("completed")}
+                        />
+                        <div className="todo-list">
+                            <Point title="Point 1" />
+                            <Point title="fvygbhunjmk,l ctfvygsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfnghmghgvbuhnijmk,l crtvbguhinjmokl. vygbuhnijmjk,l dccrfvgybhhnbhgyvf cfcfvgbjmk dfctghnjkmjgvsgvgss" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+                            <Point title="Point 3" />
+
                         </div>
-                    </div>
-                    <div className="todo-list">
-                        <Point title="Point 1" />
-                        <Point title="Point 2" />
-                        <Point title="Point 3" />
                     </div>
                 </div>
             </div>

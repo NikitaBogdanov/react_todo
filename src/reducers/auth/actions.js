@@ -9,23 +9,20 @@ import {
 
 import service from '../../service/index';
 
-export const login = (data) => {
-    return (dispatch) => {
-        dispatch({ type: LOGIN });
-        service.AuthService.login(data).then(payload =>
-            dispatch({ type: LOGIN_SUCCESS, payload }))
-        .catch(error =>
-            dispatch({ type: LOGIN_FAILURE, error }));
-        }
+export const login = (data) => (dispatch, getState, {AuthService}) => {
+    dispatch({type: LOGIN});
+    AuthService.login(data)
+        .then((payload) => dispatch({type: LOGIN_SUCCESS, payload}))
+        .catch((error) => dispatch({type: LOGIN_FAILURE, error}));
 };
 
 export const registration = (data) => {
     return (dispatch) => {
 
-        dispatch({ type: REGISTRATION });
+        dispatch({type: REGISTRATION});
         service.AuthService.registration(data).then(payload =>
-            dispatch({ type: REGISTRATION_SUCCESS, payload }))
-        .catch(error =>
-            dispatch({ type: REGISTRATION_FAILURE, error }));
+            dispatch({type: REGISTRATION_SUCCESS, payload}))
+            .catch(error =>
+                dispatch({type: REGISTRATION_FAILURE, error}));
     }
 };

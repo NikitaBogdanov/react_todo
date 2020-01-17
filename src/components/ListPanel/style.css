@@ -1,0 +1,31 @@
+.todo-panel {
+    width: 100%;
+    margin: 15px 0 5px 0;
+    padding: 10px 0 10px 0;
+    box-shadow: 0 1px 10px 2px #00000525;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.filter-panel-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.filter-panel-buttons > .custom-button {
+    border-radius: 0;
+    margin-left: -1px;
+    width: 150px;
+}
+.filter-panel-buttons > .light:not(:hover) {
+    background-color: rgba(115, 166, 197, 0.3);
+}
+.filter-panel-buttons .custom-button:last-child {
+    border-radius: 0 8px 8px 0;
+}
+.filter-panel-buttons .custom-button:first-child {
+    border-radius: 8px 0 0 8px;
+}
