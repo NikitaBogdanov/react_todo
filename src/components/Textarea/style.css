@@ -1,8 +1,10 @@
 .custom-textarea-container {
   width: 300px;
+  padding-left: 20px;
 }
 .custom-textarea-container > textarea {
   font-size: 16px;
+  width: 290px;
   border-color: rgba(115, 166, 197, 0.4);
   border-radius: 5px;
   outline: none;

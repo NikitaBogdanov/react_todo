@@ -13,7 +13,7 @@ class CustomTextarea extends React.Component {
         return (
             <div className="custom-textarea-container">
                 <textarea
-                    cols="30"
+                    // cols="30"
                     rows="5"
                     maxLength="120"
                     onChange={handleChange}

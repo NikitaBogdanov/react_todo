@@ -11,7 +11,7 @@ export default {
         return fetch(domain + path, requestOptions)
             .then(handleResponse)
             .then(sessionId => {
-                localStorage.setItem('sessionId', JSON.stringify(sessionId));
+                // localStorage.setItem('sessionId', JSON.stringify(sessionId));
 
                 return sessionId;
             });
@@ -23,7 +23,7 @@ function handleResponse(response) {
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {
-                localStorage.removeItem('sessionId');
+                // localStorage.removeItem('sessionId');
                 // logout();
                 // location.reload(true);
             }

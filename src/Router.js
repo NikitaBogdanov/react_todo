@@ -1,5 +1,5 @@
 import React from 'react';
-import api from "./service";
+import Api from "./service";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -11,7 +11,7 @@ import Counter from "./components/Counter";
 import combineReducers from './reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(combineReducers,  composeEnhancers(applyMiddleware(thunk.withExtraArgument(api))));
+export const store = createStore(combineReducers,  composeEnhancers(applyMiddleware(thunk.withExtraArgument(Api))));
 
 class MyRouter extends React.Component {
     constructor(props) {

@@ -1,27 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from "react-router-dom";
+import {logout} from '../../reducers/auth/actions';
+
 import Point from '../../components/Point'
-import CustomInput from '../../components/Input'
 import CustomButton, {ButtonColors} from '../../components/Button'
 import ListPanel from '../../components/ListPanel'
 import './style.css'
-import {Redirect} from "react-router-dom";
 
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             filter: "all",
-            isReturning: false
+            // isReturning: false
         };
         this.handleClickReturn = this.handleClickReturn.bind(this);
         this.handleClickFilter = this.handleClickFilter.bind(this);
     }
 
     handleClickReturn() {
-        console.log(this.state.isReturning);
-        console.log(this.state.filter);
-        this.setState({isReturning: true});
+        // this.props.logout().
     }
 
     handleClickFilter(value) {
@@ -36,10 +35,7 @@ class TodoList extends React.Component {
                 <div className="todo-container">
                     <div className="todo-content">
                         <div className="todo-top">
-                            <CustomButton title="<" type={ButtonColors.light} handleClick={this.handleClickReturn}/>
-                            {this.state.isReturning && <Redirect to={"/"}/>}
-                            {/*<CustomButton title="rename" type={ButtonColors.light} />*/}
-
+                            <CustomButton title={"no"} type={ButtonColors.light} handleClick={this.handleClickReturn}/>
                             <div className="title">
                                 <span>My todo-list</span>
                             </div>
@@ -75,4 +71,14 @@ class TodoList extends React.Component {
         );
     }
 }
-export default TodoList
+
+const mapStateToProps = (state) => ({
+    payload: state.auth.login.payload,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    logout : () => dispatch(logout())
+});
+
+// export default TodoList
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

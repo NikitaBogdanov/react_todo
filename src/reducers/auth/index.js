@@ -2,6 +2,7 @@ import {
     LOGIN,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    LOGOUT,
     REGISTRATION,
     REGISTRATION_SUCCESS,
     REGISTRATION_FAILURE,
@@ -28,6 +29,8 @@ export default function LoginApp(state = initialState, action) {
             return  { ...state, login: { isLoading : false, payload: action.payload }};
         case LOGIN_FAILURE:
             return  { ...state, login: { isLoading : false, error: action.error }};
+        case LOGOUT:
+            return  { ...state, login: { payload: null }};
         case REGISTRATION:
             return  { ...state, registration: { isLoading : true, error: null }};
         case REGISTRATION_SUCCESS:

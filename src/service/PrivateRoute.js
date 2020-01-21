@@ -7,9 +7,16 @@ class PrivateRoute extends React.Component {
         super(props);
     }
 
+
     render() {
+        console.log("LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOG");
         return (
-            <Route path = {this.props.path} component = {!localStorage.getItem("sessionId") ? this.props.component : AuthPage}/>
+            <Route path={this.props.path}  component = {this.props.component}>
+                {!localStorage.getItem("sessionId") && <Redirect to={"/"}/>}
+            </Route>
+
+
+            // <Route path = {this.props.path} render={(props) => <Redirect to={"/"}/>} component = {localStorage.getItem("sessionId") ? this.props.component : AuthPage}/>
             // <Route path={this.props.path} render={props => <Redirect to={"/"}/>}/>
         )
     }

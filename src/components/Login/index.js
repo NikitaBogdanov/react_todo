@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {login} from '../../reducers/auth/actions';
+
 import CustomInput from '../Input'
 import CustomButton, {ButtonColors} from '../Button'
 import './style.css'
@@ -23,7 +24,10 @@ class AuthLogin extends React.Component {
     }
     handleClickLogin() {
         // this.props.login({email: this.state.email, pw: this.state.pw}).then()
-        this.props.login({email: this.state.email, pw: this.state.pw})
+        this.props.login({email: this.state.email, pw: this.state.pw}, console.log('Fetched user and updated UI!'))
+            // .then(() =>
+            //     console.log('Fetched user and updated UI!')
+            // )
     }
 
     render() {
@@ -35,7 +39,7 @@ class AuthLogin extends React.Component {
                         {this.props.error && "Something wrong, check email and password" }
                         {this.props.payload && "You are login in!"}
                     </span>
-                        {this.props.error && <Redirect to={"/list"}/>}
+                        {/*{this.props.payload && <Redirect to={"/list"}/>}*/}
                 </div>
                 <div className="inputs">
                     <CustomInput
@@ -44,6 +48,10 @@ class AuthLogin extends React.Component {
                         handleChange={(e) => this.handleChange(e.target.value, "email")}
                         placeholder="sobaka@gmail.com"
                     />
+                    {/*
+                    PASSWORD!!!
+                    LOGIN NOTICE FONT!!!
+                    */}
                     <CustomInput
                         value={this.state.pw}
                         title="Enter password:"
@@ -57,13 +65,15 @@ class AuthLogin extends React.Component {
                         title="Switch to register"
                         type={ButtonColors.light}
                         handleClick={this.props.onSwitch}
-                        disabled={this.props.isLoading || this.props.payload}/>
+                        disabled={this.props.isLoading || this.props.payload}
+                    />
                     <CustomButton
                         className={"login-btn"}
                         title="Login"
                         type={ButtonColors.blue}
                         handleClick={this.handleClickLogin}
-                        disabled={this.props.isLoading || this.props.payload}/>
+                        disabled={this.props.isLoading || this.props.payload}
+                    />
                 </div>
             </div>
         );
