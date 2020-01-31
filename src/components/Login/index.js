@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
 import {login} from '../../reducers/auth/actions';
+import {withRouter} from "react-router-dom";
+import history from '../../boot/history';
 
 import CustomInput from '../Input'
 import CustomButton, {ButtonColors} from '../Button'
@@ -23,11 +24,10 @@ class AuthLogin extends React.Component {
         this.setState({[field]: value})
     }
     handleClickLogin() {
-        // this.props.login({email: this.state.email, pw: this.state.pw}).then()
-        this.props.login({email: this.state.email, pw: this.state.pw}, console.log('Fetched user and updated UI!'))
-            // .then(() =>
-            //     console.log('Fetched user and updated UI!')
-            // )
+        this.props.login({email: this.state.email, pw: this.state.pw}).then(() => {
+            if (this.props.payload) this.props.history.push('/list')
+        });
+        console.log(this.props)
     }
 
     render() {
@@ -35,6 +35,7 @@ class AuthLogin extends React.Component {
             <div>
                 <div className="title">
                     <span>Login</span>
+                    {/*<li><Link to="/list">Login</Link></li>*/}
                     <span className="notice">
                         {this.props.error && "Something wrong, check email and password" }
                         {this.props.payload && "You are login in!"}
@@ -49,13 +50,12 @@ class AuthLogin extends React.Component {
                         placeholder="sobaka@gmail.com"
                     />
                     {/*
-                    PASSWORD!!!
                     LOGIN NOTICE FONT!!!
                     */}
                     <CustomInput
                         value={this.state.pw}
                         title="Enter password:"
-                        handleChange={this.handleChangePw}
+                        handleChange={(e) => this.handleChange(e.target.value, "pw")}
                         placeholder="***"
                     />
                 </div>
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => ({
     login : (data) => dispatch(login(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthLogin)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthLogin))

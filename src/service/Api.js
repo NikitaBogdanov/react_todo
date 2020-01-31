@@ -1,31 +1,39 @@
+import TokenApi from './TokenApi'
 const domain = 'http://localhost:2500';
 
 export default {
     post: (path, data) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        };
+        return request(path, data, 'POST')
+    },
+}
 
-        return fetch(domain + path, requestOptions)
-            .then(handleResponse)
-            .then(sessionId => {
-                // localStorage.setItem('sessionId', JSON.stringify(sessionId));
+function request(path, data, type) {
+    data['session_id'] = TokenApi.getToken();
 
-                return sessionId;
-            });
-    }
+    const requestOptions = {
+        method: type,
+        headers: {
+            'user-agent': 'Mozilla/4.0 MDN Example',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    return fetch(domain + path, requestOptions)
+        .then(handleResponse)
+        .then((response) => {
+            console.log(response);
+            return response;
+        });
 }
 
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
-            if (response.status === 401) {
-                // localStorage.removeItem('sessionId');
+            if (response.status === 403) {
+                TokenApi.removeToken();
                 // logout();
-                // location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;

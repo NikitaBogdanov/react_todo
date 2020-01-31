@@ -33,7 +33,7 @@
     justify-content: space-between;
 }
 .todo-top > .custom-button {
-    width: 50px;
+    width: 100px;
 }
 .todo-list {
     width: 90%;

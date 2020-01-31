@@ -93,14 +93,14 @@ class AuthRegistration extends React.Component {
                         title="Switch to login"
                         type={ButtonColors.light}
                         handleClick={this.props.onSwitch}
-                        disabled={this.props.isLoading || this.props.payload}
+                        disabled={this.props.isLoading}
                     />
                     <CustomButton
                         className={'registration-btn'}
                         title="Registration"
                         type={ButtonColors.blue}
                         handleClick={this.handleClickRegistration}
-                        disabled={this.props.isLoading || this.props.payload || this.state.validation.isPwEmpty ||
+                        disabled={this.props.isLoading || this.state.validation.isPwEmpty ||
                                   this.state.validation.isPwIncorrect || this.state.validation.isPwMismatched}
                     />
                 </div>

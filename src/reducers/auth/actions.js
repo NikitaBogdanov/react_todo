@@ -10,31 +10,31 @@ import {
 
 import service from '../../service/index';
 
-export const login = (data) => (dispatch, getState, {AuthService}) => {
+export const login = (data) => (dispatch, getState, {AuthService, TokenApi}) => {
     dispatch({type: LOGIN});
-    AuthService.login(data)
+     return AuthService.login(data)
         .then((payload) => {
+            TokenApi.setToken(payload.sessionId);
             dispatch({type: LOGIN_SUCCESS, payload});
-            localStorage.setItem("sessionId", JSON.stringify(payload.sessionId));
         })
         .catch((error) => {
+            TokenApi.removeToken();
             dispatch({type: LOGIN_FAILURE, error});
-            localStorage.removeItem("sessionId");
         });
 };
 
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch, getState, {TokenApi}) => {
     dispatch({type: LOGOUT});
-    localStorage.removeItem("sessionId");
+    TokenApi.removeToken();
 };
 
-export const registration = (data) => {
-    return (dispatch) => {
-
-        dispatch({type: REGISTRATION});
-        service.AuthService.registration(data).then(payload =>
-            dispatch({type: REGISTRATION_SUCCESS, payload}))
-            .catch(error =>
-                dispatch({type: REGISTRATION_FAILURE, error}));
-    }
+export const registration = (data) => (dispatch, getState, {AuthService}) => {
+    dispatch({type: REGISTRATION});
+    return AuthService.registration(data)
+        .then((payload) => {
+            dispatch({type: REGISTRATION_SUCCESS, payload})
+        })
+        .catch((error) => {
+            dispatch({type: REGISTRATION_FAILURE, error})
+        });
 };
