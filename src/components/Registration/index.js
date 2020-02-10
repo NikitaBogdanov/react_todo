@@ -26,21 +26,11 @@ class AuthRegistration extends React.Component {
     }
 
     handleChange(value, field) {
-        this.setState({[field]: value}, this.validationCheck) // .THEN ...
+        this.setState({[field]: value}, this.validationCheck)
     }
-    //
-    // handleChangeEmail(event) {
-    //     this.setState({email: event.target.value}, this.emailCheck)
-    // }
-    // handleChangePw(event) {
-    //     this.setState({pw: event.target.value}, this.pwCheck);
-    // }
-    // handleChangeConfirm(event) {
-    //     this.setState({pwConfirm: event.target.value}, this.pwCheck);
-    // }
+
     handleClickRegistration() {
-        //validation first
-        this.props.registration({email: this.state.email, pw: this.state.pw})
+        this.props.registration({email: this.state.email, pw: this.state.pw}).then(this.props.onSwitch)
     }
 
     validationCheck() {

@@ -1,42 +1,109 @@
 import {
-    LOGIN,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-    LOGOUT,
-    REGISTRATION,
-    REGISTRATION_SUCCESS,
-    REGISTRATION_FAILURE,
+    GET_POINTS,
+    GET_POINTS_SUCCESS,
+    GET_POINTS_FAILURE,
+    CHECK_POINT,
+    CHECK_POINT_SUCCESS,
+    CHECK_POINT_FAILURE,
+    EDIT_POINT,
+    SAVE_POINT,
+    SAVE_POINT_SUCCESS,
+    SAVE_POINT_FAILURE,
+    ADD_POINT,
+    ADD_POINT_SUCCESS,
+    ADD_POINT_FAILURE,
+    DELETE_POINT,
+    DELETE_POINT_SUCCESS,
+    DELETE_POINT_FAILURE,
 } from './constants';
 
 const initialState = {
-    login : {
+    points : {
+        payload: [],
         isLoading: false,
-        payload: null,
-        error: null,
-    },
-    registration : {
-        isLoading: false,
-        payload: null,
-        error: null,
+        error: false,
     }
 };
 
 export default function LoginApp(state = initialState, action) {
     switch (action.type) {
-        case LOGIN:
-            return  { ...state, login: { isLoading : true, error: null }};
-        case LOGIN_SUCCESS:
-            return  { ...state, login: { isLoading : false, payload: action.payload }};
-        case LOGIN_FAILURE:
-            return  { ...state, login: { isLoading : false, error: action.error }};
-        case LOGOUT:
-            return  { ...state, login: { payload: null }};
-        case REGISTRATION:
-            return  { ...state, registration: { isLoading : true, error: null }};
-        case REGISTRATION_SUCCESS:
-            return  { ...state, registration: { isLoading : false, payload: action.payload }};
-        case REGISTRATION_FAILURE:
-            return  { ...state, registration: { isLoading : false, error: action.error }};
+        case GET_POINTS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: true
+            }};
+        case GET_POINTS_SUCCESS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    payload: action.payload
+                }
+            };
+        case GET_POINTS_FAILURE:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    error: action.error
+            }};
+        case CHECK_POINT:
+            return  { ...state, points: { ...state.points,
+                    isLoading: true
+                }};
+        case CHECK_POINT_SUCCESS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    payload: action.payload
+                }};
+        case CHECK_POINT_FAILURE:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    error: action.error
+                }};
+        case EDIT_POINT:
+            return  { ...state, points: { ...state.points,
+                    payload: action.payload
+            }};
+        case SAVE_POINT:
+            return  { ...state, points: { ...state.points,
+                    isLoading: true,
+                }};
+        case SAVE_POINT_SUCCESS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    payload: action.payload
+                }};
+        case SAVE_POINT_FAILURE:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    error: action.error
+                }};
+        case ADD_POINT:
+            return  { ...state, points: { ...state.points,
+                    isLoading: true
+            }};
+        case ADD_POINT_SUCCESS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    payload: action.payload
+                }
+            };
+        case ADD_POINT_FAILURE:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    error: action.error
+            }};
+        case DELETE_POINT:
+            return  { ...state, points: { ...state.points,
+                    isLoading: true
+                }};
+        case DELETE_POINT_SUCCESS:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    payload: action.payload
+                }
+            };
+        case DELETE_POINT_FAILURE:
+            return  { ...state, points: { ...state.points,
+                    isLoading: false,
+                    error: action.error
+                }};
         default:
         {
             return state

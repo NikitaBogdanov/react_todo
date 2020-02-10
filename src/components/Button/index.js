@@ -32,9 +32,9 @@ class CustomButton extends React.Component {
 
 CustomButton.propTypes = {
     title: PropTypes.string,
-    handleClick: PropTypes.func,
     type: PropTypes.string,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    handleClick: PropTypes.func,
 };
 
 export default CustomButton

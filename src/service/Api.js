@@ -1,5 +1,6 @@
 import TokenApi from './TokenApi'
 const domain = 'http://localhost:2500';
+let logoutCallbacks;
 
 export default {
     post: (path, data) => {
@@ -22,20 +23,18 @@ function request(path, data, type) {
     return fetch(domain + path, requestOptions)
         .then(handleResponse)
         .then((response) => {
-            console.log(response);
             return response;
         });
 }
+
 
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 403) {
-                TokenApi.removeToken();
-                // logout();
+                callLogoutCallbacks();
             }
-
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
@@ -43,3 +42,10 @@ function handleResponse(response) {
         return data;
     });
 }
+
+const callLogoutCallbacks = () => {
+    logoutCallbacks(callback => callback && callback());
+};
+export const addLogoutCallback = (cb) => {
+    logoutCallbacks = (cb);
+};

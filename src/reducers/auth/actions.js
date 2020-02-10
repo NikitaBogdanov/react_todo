@@ -8,7 +8,7 @@ import {
     REGISTRATION_FAILURE,
 } from './constants';
 
-import service from '../../service/index';
+// import service from '../../service/index';
 
 export const login = (data) => (dispatch, getState, {AuthService, TokenApi}) => {
     dispatch({type: LOGIN});
@@ -18,7 +18,6 @@ export const login = (data) => (dispatch, getState, {AuthService, TokenApi}) => 
             dispatch({type: LOGIN_SUCCESS, payload});
         })
         .catch((error) => {
-            TokenApi.removeToken();
             dispatch({type: LOGIN_FAILURE, error});
         });
 };

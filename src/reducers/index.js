@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import counterApp from './counter/index';
 import auth from "./auth/index";
+import list from "./list/index";
 
 export default combineReducers({
-  counterApp,
-  auth
+  auth,
+  list
 })

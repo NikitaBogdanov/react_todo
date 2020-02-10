@@ -10,5 +10,8 @@ export default {
     addPoint(params) {
         // return ApiService.post('/lists/addList', params);
         return ApiService.post('/points/addPoint', params);
-    }
+    },
+    deletePoint(params) {
+        return ApiService.post('/points/deletePoint', params);
+    },
 }

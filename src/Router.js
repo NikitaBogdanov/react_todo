@@ -8,7 +8,6 @@ import PrivateRoute from "./boot/PrivateRoute";
 import AuthPage from "./pages/Auth";
 import TodoList from "./pages/List";
 import thunk from 'redux-thunk';
-import Counter from "./components/Counter";
 import combineReducers from './reducers';
 import auth from "./reducers/auth";
 
@@ -26,6 +25,7 @@ const initialState = localStorage.getItem("sessionId") ? {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(combineReducers, initialState, composeEnhancers(applyMiddleware(thunk.withExtraArgument(service))));
 
+
 class MyRouter extends React.Component {
     constructor(props) {
         super(props);
@@ -37,8 +37,6 @@ class MyRouter extends React.Component {
                 <Router history={history}>
                     <Route path="/" component={AuthPage} exact/>
                     <PrivateRoute path="/list" component={TodoList} exact/>
-                    {/*<Route path="/list" component={TodoList} exact/>*/}
-                    <Route path="/counter" component={Counter} exact/>
                 </Router>
             </Provider>
         );

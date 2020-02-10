@@ -1,15 +1,19 @@
-export const GETPOINTS = 'getPoints';
-export const GETPOINTS_SUCCESS = 'getPoints/success';
-export const GETPOINTS_FAILURE = 'getPoints/failure';
+export const GET_POINTS = 'get-points';
+export const GET_POINTS_SUCCESS = 'get-points/success';
+export const GET_POINTS_FAILURE = 'get-points/failure';
 
-export const UPDATEPOINT = 'updatePoint';
-export const UPDATEPOINT_SUCCESS = 'updatePoint/success';
-export const UPDATEPOINT_FAILURE = 'updatePoint/failure';
+export const CHECK_POINT = 'check-point';
+export const CHECK_POINT_SUCCESS = 'check-point/success';
+export const CHECK_POINT_FAILURE = 'check-point/failure';
+export const EDIT_POINT = 'edit-point';
+export const SAVE_POINT = 'save-point';
+export const SAVE_POINT_SUCCESS = 'save-point/success';
+export const SAVE_POINT_FAILURE = 'save-point/failure';
 
-export const ADDPOINT = 'addPoint';
-export const ADDPOINT_SUCCESS = 'addPoint/success';
-export const ADDPOINT_FAILURE = 'addPoint/failure';
+export const ADD_POINT = 'add-point';
+export const ADD_POINT_SUCCESS = 'add-point/success';
+export const ADD_POINT_FAILURE = 'add-point/failure';
 
-export const DELETEPOINT = 'deletePoint';
-export const DELETEPOINT_SUCCESS = 'deletePoint/success';
-export const DELETEPOINT_FAILURE = 'deletePoint/failure';
+export const DELETE_POINT = 'delete-point';
+export const DELETE_POINT_SUCCESS = 'delete-point/success';
+export const DELETE_POINT_FAILURE = 'delete-point/failure';

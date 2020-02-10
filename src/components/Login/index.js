@@ -20,14 +20,20 @@ class AuthLogin extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.payload) this.props.history.push('/list')
+    }
+
     handleChange(value, field) {
         this.setState({[field]: value})
     }
+
     handleClickLogin() {
-        this.props.login({email: this.state.email, pw: this.state.pw}).then(() => {
-            if (this.props.payload) this.props.history.push('/list')
-        });
-        console.log(this.props)
+        this.props.login({email: this.state.email, pw: this.state.pw})
+            .then(() => {
+                if (this.props.payload) this.props.history.push('/list')
+            });
+        // console.log(this.props)
     }
 
     render() {
@@ -37,10 +43,10 @@ class AuthLogin extends React.Component {
                     <span>Login</span>
                     {/*<li><Link to="/list">Login</Link></li>*/}
                     <span className="notice">
-                        {this.props.error && "Something wrong, check email and password" }
+                        {this.props.error && "Something wrong, check email and password"}
                         {this.props.payload && "You are login in!"}
                     </span>
-                        {/*{this.props.payload && <Redirect to={"/list"}/>}*/}
+                    {/*{this.props.payload && <Redirect to={"/list"}/>}*/}
                 </div>
                 <div className="inputs">
                     <CustomInput
@@ -87,7 +93,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    login : (data) => dispatch(login(data))
+    login: (data) => dispatch(login(data))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AuthLogin))
